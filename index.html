@@ -3,7 +3,28 @@
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Municipal Watch - Local Business Intelligence</title>
+  <title>Municipal Watch - City Council, Zoning &amp; Permit Alerts for Local Businesses, Anywhere</title>
+  <meta name="description" content="Plain-English weekly briefs on city council votes, planning agendas, zoning changes and permits in your city, for local business owners, landlords and contractors in the US and worldwide. Start a free pilot.">
+  <link rel="canonical" href="https://municipalwatch.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://municipalwatch.org/">
+  <meta property="og:title" content="Municipal Watch: never get blindsided by city hall again">
+  <meta property="og:description" content="City council, planning and zoning decisions translated into plain-English business briefs. From $49/month.">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[
+   {"@type":"Organization","@id":"https://municipalwatch.org/#org","name":"Municipal Watch","url":"https://municipalwatch.org/"},
+   {"@type":"Service","name":"Municipal Watch city intelligence briefs","serviceType":"Local government monitoring for businesses","provider":{"@id":"https://municipalwatch.org/#org"},"areaServed":"Worldwide",
+    "description":"Weekly plain-English briefs and real-time alerts on city council meetings, planning commission agendas, zoning changes and permits.",
+    "offers":[{"@type":"Offer","name":"Free pilot","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Starter","price":"49","priceCurrency":"USD"},{"@type":"Offer","name":"Pro","price":"99","priceCurrency":"USD"}]}]}</script>
+  <!-- ===== Measurement (Growth Engine). Paste IDs below; anything left blank simply doesn't load. ===== -->
+  <script>
+    window.MW_TRACKING = {
+      ga4: "",        // e.g. "G-XXXXXXXXXX"  (GA4 > Admin > Data streams)
+      metaPixel: "",  // e.g. "123456789012345" (Meta Events Manager)
+      hub: ""         // Growth Hub address, e.g. "https://growth-hub.yourname.workers.dev"
+    };
+  </script>
+  <script src="/tracking.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -15,9 +36,9 @@
   <header class="gradient-bg text-white py-16">
   <div class="container mx-auto px-6 text-center">
   <h1 class="text-4xl md:text-6xl font-bold mb-4">Municipal Watch</h1>
-  <p class="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">Software-Powered City Intelligence for Local Business Owners. Never get blindsided by city council decisions again.</p>
+  <p class="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">City intelligence for local business owners, in any city, in any country. Never get blindsided by a council decision again.</p>
   <div class="flex flex-col md:flex-row justify-center gap-4">
-  <a href="#pricing" class="bg-amber-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition">Start Free Pilot</a>
+  <a href="#pilot" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg transition">Start Free Pilot</a>
 <a href="#how-it-works" class="bg-transparent border border-slate-400 hover:border-white text-white py-3 px-8 rounded-lg transition">How It Works</a>
 </div>
 </div>
@@ -29,7 +50,7 @@
   <div class="p-8 bg-white rounded-2xl shadow-sm border border-slate-100">
 <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6 font-bold text-xl">1</div>
   <h3 class="text-xl font-bold mb-4">We Monitor</h3>
-  <p class="text-slate-600">Our Software tracks every City Council meeting, Planning Commission agenda, and zoning permit in Your City.</p>
+  <p class="text-slate-600">Our Software tracks every City Council meeting, Planning Commission agenda, and zoning permit in your city, wherever it is.</p>
 </div>
   <div class="p-8 bg-white rounded-2xl shadow-sm border border-slate-100">
   <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6 font-bold text-xl">2</div>
@@ -45,11 +66,34 @@
   </div>
   </section>
 
+
+  <section id="pilot" class="py-20">
+  <div class="container mx-auto px-6 max-w-3xl">
+  <div class="text-center mb-10">
+  <h2 class="text-3xl md:text-4xl font-bold mb-4">Start your free 2-week pilot</h2>
+  <p class="text-slate-600">Tell us your city and what matters to your business. We set up your watch and send your first brief. No card needed.</p>
+  </div>
+  <form id="pilot-form" class="bg-white p-8 md:p-10 rounded-3xl shadow-lg border border-slate-100 grid md:grid-cols-2 gap-5" novalidate>
+  <div><label for="p-name" class="block text-sm font-semibold mb-1">Your name</label><input id="p-name" name="name" required class="w-full border border-slate-300 rounded-lg px-4 py-3"></div>
+  <div><label for="p-email" class="block text-sm font-semibold mb-1">Work email</label><input id="p-email" name="email" type="email" required class="w-full border border-slate-300 rounded-lg px-4 py-3"></div>
+  <div><label for="p-business" class="block text-sm font-semibold mb-1">Business name</label><input id="p-business" name="business" class="w-full border border-slate-300 rounded-lg px-4 py-3"></div>
+  <div><label for="p-role" class="block text-sm font-semibold mb-1">You are a</label>
+  <select id="p-role" name="role" class="w-full border border-slate-300 rounded-lg px-4 py-3 bg-white"><option>Business owner</option><option>Landlord / property owner</option><option>Contractor / developer</option><option>Real estate professional</option><option>Other</option></select></div>
+  <div><label for="p-city" class="block text-sm font-semibold mb-1">City and state / region</label><input id="p-city" name="city" required placeholder="e.g. Austin, TX" class="w-full border border-slate-300 rounded-lg px-4 py-3"></div>
+  <div><label for="p-country" class="block text-sm font-semibold mb-1">Country</label><input id="p-country" name="country" required value="United States" class="w-full border border-slate-300 rounded-lg px-4 py-3"></div>
+  <div class="md:col-span-2"><label for="p-watch" class="block text-sm font-semibold mb-1">What should we watch for you?</label><textarea id="p-watch" name="watch" rows="3" placeholder="Your street or address, zoning on nearby lots, liquor licenses, parking changes, road work, rezoning..." class="w-full border border-slate-300 rounded-lg px-4 py-3"></textarea></div>
+  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+  <div class="md:col-span-2"><button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 rounded-xl transition">Start my free pilot</button>
+  <p id="pilot-msg" class="text-sm text-center mt-3 text-slate-500" role="status">We reply within one business day. Your details are only used to run your pilot.</p></div>
+  </form>
+  </div>
+  </section>
+
   <section id="pricing" class="py-20 bg-slate-100">
   <div class="container mx-auto px-6">
 <div class="text-center mb-16">
 <h2 class="text-3xl md:text-4xl font-bold mb-4">Founding Member Plans</h2>
-  <p class="text-slate-600">Special early pricing for the first 10 Local Businesses.</p>
+  <p class="text-slate-600">Special early pricing for our first founding members in each city.</p>
   </div>
 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
   <div class="bg-white p-10 rounded-3xl shadow-lg border-2 border-transparent">
@@ -59,11 +103,11 @@
   <span class="text-slate-500 ml-2">/month</span>
   </div>
   <ul class="space-y-4 mb-8">
-  <li class="flex items-center text-slate-700"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Weekly Your City Municipal Brief</li>
+  <li class="flex items-center text-slate-700"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Weekly municipal brief for your city</li>
   <li class="flex items-center text-slate-700"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Planning & Zoning Updates</li>
   <li class="flex items-center text-slate-700"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Permit Activity Reports</li>
   </ul>
-  <a href="https://buy.stripe.com/28E8wPgT36Cdep7eejd7q00" class="block text-center bg-amber-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-black transition">Subscribe Starter</a>
+  <a href="https://buy.stripe.com/28E8wPgT36Cdep7eejd7q00" data-checkout="starter" data-value="49" class="block text-center bg-amber-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-black transition">Subscribe Starter</a>
   </div>
   <div class="bg-white p-10 rounded-3xl shadow-lg border-2 border-blue-600 relative">
   <span class="absolute top-0 right-10 -translate-y-1/2 bg-amber-600 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
@@ -77,7 +121,7 @@
 <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Real-time SMS/Email Alerts</li>
   <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Custom Keyword Tracking</li>
 </ul>
-<a href="https://buy.stripe.com/5kQ7sL7itf8J0yhgmrd7q01" class="block text-center bg-amber-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 transition">Subscribe Pro</a>
+<a href="https://buy.stripe.com/5kQ7sL7itf8J0yhgmrd7q01" data-checkout="pro" data-value="99" class="block text-center bg-amber-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-700 transition">Subscribe Pro</a>
   </div>
   </div>
   </div>
@@ -93,7 +137,7 @@
 
   <footer class="gradient-bg text-slate-400 py-12 border-t border-slate-800">
   <div class="container mx-auto px-6 text-center">
-  <p>&copy; 2026 Municipal Watch. Serving Your City, California.</p>
+  <p>&copy; 2026 Municipal Watch. Serving local businesses in cities across the United States and around the world.</p>
 </div>
 </footer>
   </body>
