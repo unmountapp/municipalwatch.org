@@ -102,9 +102,20 @@
           msg.className = "text-sm text-center mt-3 text-red-600";
         }
       };
-      if (!cfg.hub) return done(false);
-      fetch(cfg.hub.replace(/\/$/, "") + "/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
-        .then(function (r) { done(r.ok); }).catch(function () { done(false); });
+      if (v("website")) return done(true);   // spam bot
+      var jobs = [];
+      if (cfg.hub) jobs.push(fetch(cfg.hub.replace(/\/$/, "") + "/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.ok; }).catch(function () { return false; }));
+      if (cfg.web3forms) jobs.push(fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ access_key: cfg.web3forms, subject: "Municipal Watch: free pilot request, " + city + ", " + country,
+          from_name: "Municipal Watch", email: v("email"), name: v("name"),
+          message: ["Name: " + v("name"), "Email: " + v("email"), "Business: " + v("business"), "Role: " + v("role"),
+            "City: " + city, "Country: " + country, "Watch for: " + v("watch"),
+            "Came from: " + ([attr.utm_source, attr.utm_medium, attr.utm_campaign].filter(Boolean).join(" / ") || "direct")].join("\n") })
+      }).then(function (r) { return r.json(); }).then(function (j) { return !!(j && j.success); }).catch(function () { return false; }));
+      if (!jobs.length) return done(false);
+      Promise.all(jobs).then(function (res) { done(res.indexOf(true) !== -1); });
     });
   }
 
